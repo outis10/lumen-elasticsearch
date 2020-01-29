@@ -10,7 +10,7 @@ return [
     |
     */
 
-    'hosts'        => ['localhost:9200'],
+    'hosts'        => [env('ELASTICSEARCH_HOST').':'.env('ELASTICSEARCH_PORT')],
 
     /*
      * The prefix to use for index names

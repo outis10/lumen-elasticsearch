@@ -107,8 +107,9 @@ class ElasticsearchService implements ElasticsearchServiceContract
      * @inheritdoc
      */
     public function exists(array $params = [])
-    {
-        return $this->client->exists($this->getPrefixedIndexParameters($params));
+    {   
+         $result = $this->client->exists($this->getPrefixedIndexParameters($params));
+         return $result;
     }
 
     /**

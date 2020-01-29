@@ -34,6 +34,8 @@ class BulkQueryTest extends TestCase
      */
     public function testAddAction()
     {
+        
+        
         $this->assertFalse($this->query->isReady());
 
         for ($i = 0; $i < self::BULK_SIZE; $i++) {

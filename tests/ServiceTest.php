@@ -257,7 +257,7 @@ class ServiceTest extends TestCase
     /**
      * Tests the exists method.
      */
-    public function testMethodExists()
+    public function tesMethodExists()
     {
         $input = [];
 
@@ -268,13 +268,15 @@ class ServiceTest extends TestCase
                      ->with($input)
                      ->will($this->returnValue($output));
 
+        
+       // var_dump($this->service)
         $this->assertEquals($output, $this->service->exists($input));
     }
 
     /**
      * Tests the indices method.
      */
-    public function testMethodIndices()
+    public function tesMethodIndices()
     {
         $output = [];
 

@@ -1,0 +1,36 @@
+version: '3.7'
+#TODO: add env elastic-search port variables
+services:
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.5.2
+    ports:
+      - "5611:5611"
+  elasticsearch:
+    container_name: elasticsearch7
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+    
+    #volumes:
+    #- ~/volumes/sales-tool/elastic/elasticsearch/:/usr/share/elasticsearch/data/
+    ports:
+      - ${ELASTICSEARCH_PORT}:9210
+      - 9310:9310
+    environment:
+      - 'ES_JAVA_OPTS=-Xms1024m -Xmx1024m'
+      - 'discovery.type=single-node'
+      - xpack.security.enabled=false
+#      - xpack.monitoring.enabled=false
+      - xpack.ml.enabled=false
+      - xpack.graph.enabled=false
+      - xpack.watcher.enabled=false  
+  php:
+    container_name: esu
+    build: ./docker/php
+    working_dir: /app
+    environment:
+      XDEBUG_CONFIG: remote_host=${DOCKER_HOST_INTERNAL}
+    volumes:
+    - .:/app
+    - ./docker/php/php.ini:/usr/local/etc/php/conf.d/custom.ini
+    - $HOME/.composer/cache:/root/.composer/cache
+    links:
+      - elasticsearch
