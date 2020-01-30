@@ -63,6 +63,14 @@ class ElasticsearchService implements ElasticsearchServiceContract
         return $this->client->updateByQuery($this->getPrefixedIndexParameters($params));
     }
 
+        /**
+     * @inheritdoc
+     */
+    public function update(array $params = [])
+    {
+        return $this->client->update($this->getPrefixedIndexParameters($params));
+    }
+
     /**
      * @inheritdoc
      */
