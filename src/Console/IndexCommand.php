@@ -67,7 +67,7 @@ abstract class IndexCommand extends AbstractCommand
 
         $data = $this->getData();
 
-        $bar = $this->output->createProgressBar($this->getCount());
+        $bar = $this->output->createProgressBar($data->count());
         $bar->setRedrawFrequency($this->getProgressBarRedrawFrequency());
 
         $bulkQuery              = new BulkQuery($this->getBulkSize());

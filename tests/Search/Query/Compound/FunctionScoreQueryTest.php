@@ -21,7 +21,8 @@ class FunctionScoreQueryTest extends AbstractQueryTestCase
         $boolQuery->addMust(new TermQuery('field1', 'value1'));
 
         $scriptScoringFunction = (new ScriptScoringFunction())
-            ->setParams([
+            ->setParams([xit
+            
                 'featured_content' => ['abc', 'xyz']
             ])->setInline("int score =0;for(item in params.featured_content){ if (doc['identifier'].indexOf(item) > -1) { score+=10;}}return score;");
 
